@@ -5,12 +5,12 @@ pool:
   vmImage: 'ubuntu-latest' 
 
 variables:
-  repositoryName: 'pipelines-javascript-docker' 
+  repositoryName: 'techlabvn/pipelines-javascript-docker' # enter your Docker repository name you want to push image
 
 steps:
 - task: Docker@2
   inputs:
-    containerRegistry: 'techlabvn_dockerhub'
-    repository: 'techlabvn/pipelines-javascript-docker'
-    command: 'buildAndPush'
-    Dockerfile: '**/Dockerfile' # find source directory in clude sub directory for docker file
+    containerRegistry: 'techlabvn_dockerhub' #enter your connection
+    repository: $(repositoryName) 
+    command: 'buildAndPush'	# Build and push to repository
+    Dockerfile: '**/Dockerfile'
