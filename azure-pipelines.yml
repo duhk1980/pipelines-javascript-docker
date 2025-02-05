@@ -16,19 +16,10 @@ stages:
     pool:
       vmImage: ubuntu-latest
     steps:
+   
     - task: Docker@2
-      displayName: Build an image
-      inputs:
-        command: build
-        dockerfile: '$(Build.SourcesDirectory)/app/Dockerfile'
-        repository: 'duhk1980/pipelines-javascript-docker'
-        tags: |
-          $(tag)
-    - task: Docker@2
-      displayName: Push an image
       inputs:
         containerRegistry: 'techlabvn_dockerhub'
-        repository: 'techlabvn_dockerhub/$(Build.Repository.Name)'
-        command: push
-        tags: |
-          $(tag)
+        repository: 'pipelines-javascript-docker'
+        command: 'buildAndPush'
+        Dockerfile: '$(Build.SourcesDirectory)/app/Dockerfile'
