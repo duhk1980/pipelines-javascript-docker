@@ -21,7 +21,7 @@ stages:
       inputs:
         command: build
         dockerfile: '$(Build.SourcesDirectory)/app/Dockerfile'
-        repository: 'duhk1980/pipelines-javascript-docker'
+        repository: 'techlabvn/pipelines-javascript-docker'
         tags: |
           $(tag)
     - task: Docker@2
@@ -29,6 +29,6 @@ stages:
       inputs:
         command: push
         containerRegistry: 'techlabvn_dockerhub'
-        repository: 'duhk1980/pipelines-javascript-docker'
+        repository: 'techlabvn/pipelines-javascript-docker'
         tags: |
           $(tag)
