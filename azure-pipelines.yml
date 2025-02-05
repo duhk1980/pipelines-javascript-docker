@@ -23,7 +23,12 @@ stages:
     - task: Docker@2
       displayName: Build an image
       inputs:
-        command: 'buildAndPush'
+        command: 'build'
         dockerfile: '$(Build.SourcesDirectory)/app/Dockerfile'
         tags: |
           $(tag)
+    - task: Docker@2
+      inputs:
+        containerRegistry: 'techlabvn_dockerhub'
+        repository: 'techlabvn_dockerhub'
+        command: 'push'
