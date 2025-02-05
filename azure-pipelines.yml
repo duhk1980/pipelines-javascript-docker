@@ -3,10 +3,6 @@ trigger:
 
 resources:
 - repo: self
-
-variables:
-  tag: '$(Build.BuildId)'
-
 stages:
 - stage: Build
   displayName: Build and push image
@@ -16,19 +12,9 @@ stages:
     pool:
       vmImage: ubuntu-latest
     steps:
-    - task: Docker@2
-      displayName: Build an image
-      inputs:
-        command: build
-        dockerfile: '$(Build.SourcesDirectory)/app/Dockerfile'
-        repository: 'techlabvn/pipelines-javascript-docker'
-        tags: |
-          $(tag)
-    - task: Docker@2
-      displayName: Push an image
-      inputs:
-        command: push
-        containerRegistry: 'techlabvn_dockerhub'
-        repository: 'techlabvn/pipelines-javascript-docker'
-        tags: |
-          $(tag)
+      - task: Docker@2
+        inputs:
+          containerRegistry: 'techlabvn_dockerhub'
+          repository: 'pipelines-javascript-docker'
+          command: 'buildAndPush'
+          Dockerfile: '**/Dockerfile'
