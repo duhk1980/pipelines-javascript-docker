@@ -5,7 +5,7 @@ pool:
   vmImage: 'ubuntu-latest' 
 
 variables:
-  repositoryName: 'sample repository' # enter your repository name
+  repositoryName: 'pipelines-javascript-docker' # enter your repository name
 
 steps:
 - task: Docker@2
